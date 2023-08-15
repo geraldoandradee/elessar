@@ -1,0 +1,16 @@
+- name: Add Syncthing's signing key
+  ansible.builtin.apt_key:
+    url: https://syncthing.net/release-key.gpg
+    state: present 
+
+- name: Add Syncthing's repository
+  ansible.builtin.apt_repository:
+    repo: deb https://apt.syncthing.net/ syncthing candidate
+    state: present
+    filename: syncthing
+
+- name: Install Syncthing
+  apt:
+    pkg:
+      - syncthing
+    state: present  
